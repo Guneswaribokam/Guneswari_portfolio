@@ -1,1 +1,1 @@
-deployment_link:guneswari-portfolio-69w010gzw-guneswaris-projects.vercel.app
+deployment_link:https://guneswari-portfolio.vercel.app/
