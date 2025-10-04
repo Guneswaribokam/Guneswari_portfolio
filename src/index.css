@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========= Refined Resume Design System ========= */
+/* Grey foundation + Navy Blue & Violet accents */
+/* Light mode: professional & clean */
+/* Dark mode: deep dark + glowing accents */
+
+@layer base {
+  :root {
+    --background: 220 15% 97%;          /* Soft off-white grey */
+    --foreground: 220 20% 15%;          /* Dark grey text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 15%;
+
+    --primary: 230 60% 45%;             /* Deep navy blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 230 65% 65%;
+
+    --secondary: 260 35% 45%;           /* Muted violet-grey */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 260 50% 65%;
+
+    --muted: 220 10% 94%;               /* Light grey sections */
+    --muted-foreground: 220 8% 40%;
+
+    --accent: 250 45% 55%;              /* Soft violet accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 75% 50%;           /* Professional red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 85%;
+    --input: 220 10% 85%;
+    --ring: 230 60% 45%;
+
+    --radius: 1rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(230 60% 45%), hsl(250 45% 55%));
+    --gradient-secondary: linear-gradient(135deg, hsl(220 15% 40%), hsl(250 20% 50%));
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(230 60% 65% / 0.15), transparent 70%);
+    
+    --shadow-3d: 0 20px 60px -15px hsl(230 50% 40% / 0.35), 
+                 0 10px 30px -10px hsl(250 45% 40% / 0.25);
+    --shadow-card: 0 10px 40px -10px hsl(230 40% 35% / 0.2);
+    --shadow-glow: 0 0 60px hsl(230 60% 55% / 0.3);
+  }
+
+  .dark {
+    --background: 230 15% 6%;           /* Very dark background (almost black navy) */
+    --foreground: 220 15% 92%;          /* Off-white text */
+
+    --card: 230 15% 10%;
+    --card-foreground: 220 15% 95%;
+
+    --popover: 230 15% 10%;
+    --popover-foreground: 220 15% 95%;
+
+    --primary: 230 70% 60%;             /* Bright navy-blue accent */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 230 75% 70%;
+
+    --secondary: 260 55% 65%;           /* Vibrant violet */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 260 60% 70%;
+
+    --muted: 230 10% 18%;
+    --muted-foreground: 220 8% 75%;
+
+    --accent: 260 65% 70%;              /* Glow violet */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 10% 20%;
+    --input: 230 10% 20%;
+    --ring: 230 70% 60%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(230 70% 60%), hsl(260 65% 70%));
+    --gradient-secondary: linear-gradient(135deg, hsl(230 15% 20%), hsl(250 25% 45%));
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(230 70% 65% / 0.3), transparent 70%);
+    
+    --shadow-3d: 0 25px 70px -15px hsl(230 65% 60% / 0.3), 
+                 0 15px 40px -10px hsl(260 60% 65% / 0.25);
+    --shadow-card: 0 15px 50px -10px hsl(230 45% 40% / 0.2);
+    --shadow-glow: 0 0 100px hsl(230 70% 65% / 0.35), 
+                   0 0 50px hsl(260 60% 65% / 0.25);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  .card-3d {
+    @apply backdrop-blur-md bg-card/50 border border-border/50;
+    box-shadow: var(--shadow-card);
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-3d:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: var(--shadow-3d);
+  }
+
+  .glow-effect {
+    position: relative;
+  }
+
+  .glow-effect::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .glow-effect:hover::before {
+    opacity: 1;
+  }
+}
